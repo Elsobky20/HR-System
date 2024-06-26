@@ -1,0 +1,67 @@
+﻿@model SalaryReportVM 
+@{
+    ViewData["Title"] = "Index";
+}
+<form asp-action="GetSalaryReport" id="getDataForm">
+    <div class="container-fluid position-relative d-flex p-0">
+        <div class="container-fluid">
+            <div class="row h-50 align-items-center justify-content-center" style="min-height: 80vh;">
+                <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4">
+                    <div class="bg-secondary rounded p-4 p-sm-5 my-4 mx-3">
+                        <div>
+                            <select id="EmployeeId" asp-for="EmployeeId" required>
+                                <option value="">Select Emp</option>
+                                @foreach (var item in Model.Employees)
+                                {
+                                    <option value="@item.id">@item.Name</option>
+                                }
+                            </select>
+                        </div>
+                        <div>
+                            <label asp-for="DateRangeStart" class="control-label"></label>
+                            <input asp-for="DateRangeStart" id="StartDate" type="date" class="form-control" />
+                            <span asp-validation-for="DateRangeStart" class="text-danger"></span>
+                        </div>
+                        <div>
+                            <label asp-for="DateRangeEnd" class="control-label"></label>
+                            <input asp-for="DateRangeEnd" id="EndDate" type="date" class="form-control" />
+                            <span asp-validation-for="DateRangeEnd" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" id="getDataBtn" value="Create" class="btn btn-primary" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>
+
+<div >
+    <h4 id="dataContainer"></h4>
+</div>
+<script>
+    $(document).ready(function () {
+        $('#getDataForm').submit(function (e) {
+            e.preventDefault();
+            var formData = {
+                EmployeeId: $('#EmployeeId').val(),
+                StartDate: $('#StartDate').val(),
+                EndDate: $('#EndDate').val()
+            };
+
+            $.ajax({
+                url: '@Url.Action("GetSalaryReport", "SalaryReport")',
+                type: 'POST',
+                data: formData,
+                success: function (result) {
+                    $('#dataContainer').html(result);
+                },
+                error: function (xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
+            });
+        });
+    });
+</script>

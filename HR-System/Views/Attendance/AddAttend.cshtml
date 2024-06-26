@@ -1,0 +1,56 @@
+﻿@model HR_System.ViewModels.AttendanceVM
+
+@{
+    ViewData["Title"] = "AddAttend";
+}
+
+<h1 style="text-align:center">AddAttend</h1>
+
+        <form asp-action="AddAttend">
+            <div class="container-fluid position-relative d-flex p-0">
+                <div class="container-fluid">
+                    <div class="row h-50 align-items-center justify-content-center" style="min-height: 80vh;">
+                        <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4">
+                            <div class="bg-secondary rounded p-4 p-sm-5 my-4 mx-3">
+                                <div>
+                                    <select id="" asp-for="EmployeeId" required>
+                                        <option value="">Select Emp</option>
+                                        @foreach (var item in Model.Employees)
+                                        {
+                                            <option value="@item.id">@item.Name</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Date" class="control-label"></label>
+                                    <input asp-for="Date" type="date" class="form-control" />
+                                    <span asp-validation-for="Date" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="TimeOfAttend" class="control-label"></label>
+                            <input asp-for="TimeOfAttend" type="time" class="form-control" />
+                                    <span asp-validation-for="TimeOfAttend" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="TimeOfLeave" class="control-label"></label>
+                            <input asp-for="TimeOfLeave" type="time" class="form-control" />
+                                    <span asp-validation-for="TimeOfLeave" class="text-danger"></span>
+                                </div>
+                                <div class="form-group form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" asp-for="ISAttend" /> @Html.DisplayNameFor(model => model.ISAttend)
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" value="Create" class="btn btn-primary" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+
+
+

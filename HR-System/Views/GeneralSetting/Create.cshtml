@@ -1,0 +1,43 @@
+﻿@model HR_System.ViewModels.GeneralSettingVM
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<form asp-action="Create">
+    <div class="container-fluid position-relative d-flex p-0">
+        <div class="container-fluid">
+            <div class="row h-100 align-items-center justify-content-center" style="min-height: 80vh;">
+                <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4">
+                    <div class="bg-secondary rounded p-4 p-sm-5 my-4 mx-3">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="OverTime" class="control-label"></label>
+                            <input asp-for="OverTime" class="form-control" />
+                            <span asp-validation-for="OverTime" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Late" class="control-label"></label>
+                            <input asp-for="Late" class="form-control" />
+                            <span asp-validation-for="Late" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="FirstWeekEnd" class="control-label"></label>
+                            <input asp-for="FirstWeekEnd" class="form-control" />
+                            <span asp-validation-for="FirstWeekEnd" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="SecondWeekEnd" class="control-label"></label>
+                            <input asp-for="SecondWeekEnd" class="form-control" />
+                            <span asp-validation-for="SecondWeekEnd" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Create" class="btn btn-primary" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>
